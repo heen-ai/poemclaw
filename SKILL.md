@@ -7,9 +7,15 @@ description: Select and present a poem that resonates with the user's current co
 
 Given a user's current context (mood, recent conversations, ongoing life situations), select a poem from the Poetry Foundation collection that feels personally appropriate.
 
-## When to Use
+## When to Use (TRIGGERS - ALWAYS use skill for these)
 
-- User asks for "a poem", "read me something", "poem of the day"
+**ALWAYS invoke this skill when user requests:**
+- "i need a poem" / "give me a poem" / "poem please"
+- "read me something" / "something for me"  
+- "what's the poem of the day" / "poem of the day"
+- "poem" (any variation - err on side of using skill)
+
+**Use judgment for:**
 - User shares something emotionally significant and a poem would land well
 - Morning cron: delivering a "poem of the day"
 
@@ -41,11 +47,18 @@ Love, Activities, Home Life, Realistic & Complicated, Popular Culture, School & 
 
 Read the user's recent context to understand their current state:
 
-- **Session history** (last 10-20 messages): immediate mood and topic
-- **Today's memory file** (memory/YYYY-MM-DD.md): what's been happening today
-- **MEMORY.md**: longer-term situation - ongoing projects, life transitions, things they care about
+1. **Today's memory file** (memory/YYYY-MM-DD.md): what's been happening today
+2. **Yesterday's memory file** (memory/YYYY-MM-DD.md): context from yesterday carries forward
+3. **MEMORY.md**: longer-term situation - ongoing projects, life transitions, things they care about
+4. **Session history** (last 20-30 messages from this channel): immediate mood and topic
 
 Synthesize: What does this person need to hear right now? What would land?
+
+**Important notes on session history:**
+- "Session" refers to this specific channel/conversation
+- If this is a short session (few messages), rely more heavily on the memory files
+- Look for emotional tone - is the user frustrated? hopeful? exhausted? playful?
+- Note ongoing topics - if they've been discussing their kids all week, that's context
 
 ### Step 2: Select Tags
 
