@@ -50,14 +50,16 @@ Read the user's recent context to understand their current state:
 1. **Today's memory file** (memory/YYYY-MM-DD.md): what's been happening today
 2. **Yesterday's memory file** (memory/YYYY-MM-DD.md): context from yesterday carries forward
 3. **MEMORY.md**: longer-term situation - ongoing projects, life transitions, things they care about
-4. **Session history** (last 20-30 messages from this channel): immediate mood and topic
+4. **ALL session histories** (critical!): The user has multiple active sessions across different channels (Discord, Telegram, etc.). Use `sessions_list` to find recent sessions, then fetch the last 10-20 messages from EACH of the user's active sessions using `sessions_history`. This gives you the full picture.
 
 Synthesize: What does this person need to hear right now? What would land?
 
 **Important notes on session history:**
-- "Session" refers to this specific channel/conversation
-- If this is a short session (few messages), rely more heavily on the memory files
-- Look for emotional tone - is the user frustrated? hopeful? exhausted? playful?
+- "Session" refers to any channel/conversation the user has with you
+- The current session alone is NOT sufficient - the user communicates across many channels
+- Use `sessions_list` with `activeMinutes: 1440` (last 24 hours) to find all recent sessions
+- Fetch from each session and synthesize the combined emotional picture
+- Look for emotional tone across all conversations - is the user frustrated? hopeful? exhausted? playful?
 - Note ongoing topics - if they've been discussing their kids all week, that's context
 
 ### Step 2: Select Tags
